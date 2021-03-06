@@ -52,8 +52,8 @@ generateCrt () {
   do
     domain_params="${domain_params} -d ${d}"
   done
-  ${ACME_BIN_PATH}/acme.sh --force --log --issue --dns ${DNS} --dnssleep ${DNS_SLEEP} -d "${DOMAIN}" -d "*.${DOMAIN}"
-  ${ACME_BIN_PATH}/acme.sh --force --installcert -d ${DOMAIN} -d *.${DOMAIN} \
+  ${ACME_BIN_PATH}/acme.sh --force --log --issue --dns ${DNS} --dnssleep ${DNS_SLEEP} ${domain_params}
+  ${ACME_BIN_PATH}/acme.sh --force --installcert ${domain_params} \
     --certpath ${CRT_PATH}/cert.pem \
     --key-file ${CRT_PATH}/privkey.pem \
     --fullchain-file ${CRT_PATH}/fullchain.pem
